@@ -8,3 +8,6 @@
 
 - name: 'Run playbook-cert-manager_installation.yml'
   ansible.builtin.import_playbook: playbook-cert-manager_installation.yml
+
+- name: 'Run playbook-trust-manager_installation.yml'
+  ansible.builtin.import_playbook: playbook-trust-manager_installation.yml
