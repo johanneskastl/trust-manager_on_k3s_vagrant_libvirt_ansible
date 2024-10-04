@@ -59,3 +59,21 @@
         pod_list_ready | json_query("resources[*].status.containerStatuses[*].ready") | unique | sort == [[true]]
       retries: 36
       delay: 10
+
+    - name: 'Create a example bundle'
+      delegate_to: 'localhost'
+      kubernetes.core.k8s:
+        state: 'present'
+        # taken from https://cert-manager.io/docs/trust/trust-manager/#quick-start-example
+        resource_definition: |
+          apiVersion: trust.cert-manager.io/v1alpha1
+          kind: Bundle
+          metadata:
+            name: example-bundle
+            namespace: trust-manager
+          spec:
+            sources:
+            - useDefaultCAs: true
+            target:
+              configMap:
+                key: "trust-bundle.pem"
