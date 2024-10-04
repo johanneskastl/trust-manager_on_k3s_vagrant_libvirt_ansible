@@ -33,8 +33,6 @@
           app:
             trust:
               namespace: cert-manager
-          secretTargets:
-            enabled: true
 
     - name: 'Wait until all pods are running'
       delegate_to: 'localhost'
